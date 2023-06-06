@@ -1,0 +1,75 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+    <!-- bradcam_area_start  -->
+    <div class="bradcam_area breadcam_bg">
+        <div class="container">
+            <div class="rowGrid2_full">
+                <div class="rowGrid jflex-start">
+                    <div class="bradcam_text">
+                        <h3>Blog</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- bradcam_area_end  -->
+
+
+    <!--================Blog Area =================-->
+    <section class="blog_area section-padding">
+        <div class="container">
+            <div class="rowGrid4">
+                <div class="">
+                    <div class="blog_left_sidebar">
+                        {% for post in posts %}
+                        <article class="blog_item">
+                            <div class="blog_item_img">
+                                <img class="card-img rounded-0" src="{{ post.image.url }}" alt="">
+                                <span class="blog_item_date">
+                                    <h3>{{ post.date }}</h3>
+                                    <p>{{ post.time }}</p>
+                                </span>
+                            </div>
+
+                            <div class="blog_details">
+                                <h2>{{ post.title }}</h2>
+                                {% autoescape off %}
+                                <p>{{ post.description }}</p>
+                                {% endautoescape %}
+
+                                <p>
+                                    <a data-toggle="collapse" href="#collapseExample{{post.id}}" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-comments"></i>    {{ post.comment_count }} Comments</a>
+                                </p>
+                                <div class="collapse" id="collapseExample{{post.id}}">
+                                    <div style="height:250px; overflow-y:scroll; " class="card card-body">
+                                        {% for comment in comments %}
+                                        {% if post.id == comment.id_blog%}
+                                        <p class="text-justify">
+                                            <span class="d-block text-primary" ><small style="font-size: 14px;font-weight: 700;">{{comment.user}} <i class="fa fa-hand-o-down" aria-hidden="true"></i></small></span>
+                                            <span class="d-block ml-4">{{ comment.content }}</span>
+                                        </p>
+                                        {%endif%}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <form  method="post">
+                                    {% csrf_token %}
+                                    {{ c_form|crispy }}
+                                    <input type="hidden" name="id_block" value="{{post.id}}">
+                                    <input type="submit" class="btn btn-primary btn-sm">
+                                </form>
+                            </div>
+                        </article>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+

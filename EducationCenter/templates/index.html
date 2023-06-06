@@ -1,0 +1,250 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+    <!-- slider_area_start -->
+    <div class="slider_area">
+        <div class="slider_active owl-carousel">
+            <!-- single_carouse -->
+            <div class="single_slider  rowGrid2_full acenter slider_bg_1">
+                <div class="container">
+                    <div class="rowGrid">
+                        <div class="rowGrid">
+                            <div class="slider_text ">
+                                <h3>Повысьте свои навыки <br>
+                                    с помощью нового способа <br>
+                                    обучения.</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!--/ single_carouse -->
+            <!-- single_carouse -->
+            <div class="single_slider  rowGrid2_full acenter slider_bg_2">
+                <div class="container">
+                    <div class="rowGrid">
+                        <div class="rowGrid">
+                            <div class="slider_text ">
+                                <h3>Повысьте свои навыки <br>
+                                    с помощью нового способа <br>
+                                    обучения.</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/ single_carouse -->
+            <!-- single_carouse -->
+            <div class="single_slider  rowGrid2_full acenter slider_bg_1">
+                <div class="container">
+                    <div class="rowGrid">
+                        <div class="rowGrid">
+                            <div class="slider_text ">
+                                <h3>Повысьте свои навыки <br>
+                                    с помощью нового способа <br>
+                                    обучения.</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/ single_carouse -->
+        </div>
+    </div>
+    <!-- slider_area_end -->
+
+    <!-- service_area_start  -->
+    <div class="service_area gray_bg">
+        <div class="container">
+            <div class="block ">
+                <div class="blocks">
+                    <div class="single_service d-flex align-items-center ">
+                        <div class="icon d-flex justify-content-center align-items-center">
+                            <img width="100%" height="100%" src="{% static 'img/elements/icon_3.png' %}" alt="icon">
+                        </div>
+                        <div class="service_info">
+                            <p><b style="color: #fff">Занятия в современных и оборудованных классах</b> </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="blocks ">
+                    <div class="single_service d-flex align-items-center ">
+                        <div class="icon d-flex justify-content-center align-items-center">
+                            <img width="100%" height="100%" src="{% static 'img/elements/icon_4.png' %}" alt="">
+                        </div>
+                        <div class="service_info">
+                            <p><b style="color: #fff">Эффективная методика с гарантией результата </b></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="blocks">
+                    <div class="single_service d-flex align-items-center ">
+                        <div class="icon d-flex justify-content-center align-items-center">
+                            <img  width="100%" height="100%" src="{% static 'img/elements/icon_6.png' %}" alt="">
+                        </div>
+                        <div class="service_info">
+                            <p><b style="color: #fff">Высокие результаты выпускников </b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ service_area_start  -->
+
+    <!-- popular_program_area_start  -->
+    <div class="popular_program_area section__padding">
+        <div class="container">
+            <div class="rowGrid">
+                <div class="rowGrid">
+                    <div class="section_title text-center">
+                        <h3>Популряные курсы</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content mt-5" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="block">
+                        {% for course in courses %}
+                        <div class="blocks">
+                            <div class="single__program">
+                                <div class="program_thumb">
+                                    <img src="{{ course.image.url }}" height="264px" alt="">
+                                </div>
+                                <div class="program__content">
+                                    <h4>{{ course.title }}</h4>
+                                    {% autoescape off %}
+                                    <p>{{ course.description }}</p>
+                                    {% endautoescape %}
+                                    <div class="d-flex justify-content-center">
+                                        <a href="{% url 'main-admission' %}" class="boxed-btn5">Подать заявку</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="rowGrid">
+                <div class="rowGrid>
+                <div class="course_all_btn text-center">
+                    <a href="{% url 'courses' %}" class="boxed-btn4">ПРОСМОТРЕТЬ ВСЕ КУРСЫ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- popular_program_area_end -->
+
+    <!-- recent_event_area_strat  -->
+    <div class="recent_event_area">
+        <div class="container">
+            <div class="rowGrid">
+                <div class="rowGrid">
+                    <div class="section_title text-center mb-70">
+                        <h3 class="mb-45">Recent Event</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            incididunt ut
+                            labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="rowGrid margin__event">
+                    {% for event in events %}
+                        <div class="single_event d-flex align-items-center">
+                            <div class="date text-center" style="background: #ebb830;">
+                                <span>02</span>
+                                <p>{{ event.date }}</p>
+                            </div>
+                            <div class="event_info">
+                                <a href="{% url 'event_details' event.id %}">
+                                    <h4>{{ event.title }}</h4>
+                                </a>
+                                <p>
+                                    <span> <i class="flaticon-clock"></i> 10:30 pm</span>
+                                    <span> <i class="flaticon-calendar"></i> 21Nov 2020 </span>
+                                    <span> <i class="flaticon-placeholder"></i> AH Oditoriam</span>
+                                </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- recent_event_area_end  -->
+
+    <div data-scroll-index='1' class="admission_area">
+        <div class="admission_inner">
+            <div class="container">
+                <div class="jflex-end rowGrid5">
+                    <div class="">
+                        <div class="admission_form">
+                            <h3>Apply for Admission</h3>
+                            <form action="{% url 'main-admission' %}" method="post">
+                                {% csrf_token %}
+                                <div class="block2">
+                                    <div class="col-md-6">
+                                        <div class="single_input mb-4">
+                                            <input id="phone" type="tel" name="phone" placeholder="Phone Number" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="single_input">
+                                            <textarea cols="30" placeholder="Write an Application" rows="10" name="message" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="apply_btn">
+                                            <button class="boxed-btn3" type="submit">Apply Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- recent_news_area_start  -->
+    <div class="recent_news_area section__padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <div class="section_title text-center mb-70">
+                        <h3 class="mb-45">News</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            incididunt ut
+                            labore et dolore magna aliqua.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="rowGrid2">
+                {% for new in news %}
+                <div class="">
+                    <div class="single__news">
+                        <div class="thumb">
+                            <a href="{% url 'main-news-detail' new.id %}">
+                                <img src="{{ new.image.url }}" alt="">
+                            </a>
+                        </div>
+                        <div class="news_info">
+                            <a href="{% url 'main-news-detail' new.id %}">
+                                <h4>{{ new.title }}</h4>
+                            </a>
+                            <p class="d-flex align-items-center"> <span><i class="flaticon-calendar-1"></i> {{ new.date }}</span>
+                                <span> <i class="flaticon-comment"></i> 01 comments</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

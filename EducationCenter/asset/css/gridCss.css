@@ -1,0 +1,125 @@
+.block {
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+    grid-gap: 1%;
+}
+.rowGrid {
+    display: grid;
+    width: 100%;
+    justify-content: center;
+}
+.rowGrid2 {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 49% 49%;
+    grid-gap: 1%;
+}
+.rowGrid3 {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 69% 29%;
+    grid-gap: 1%;
+}
+.rowGrid4 {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 100%;
+    grid-gap: 1%;
+}
+.rowGrid5 {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 50%;
+    grid-gap: 1%;
+}
+.rowGrid2_full {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+
+.dGrid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 49% 49%;
+    grid-gap: 1%;
+}
+
+
+.jflex-start{
+    justify-content: flex-start;
+}
+
+.jflex-end{
+    justify-content: flex-end;
+}
+
+.jcenter{
+    justify-content: center;
+}
+
+.jspace-between {
+    justify-content: space-between;
+}
+
+.aflex-start{
+    align-items: flex-start;
+}
+
+.aflex-end{
+    align-items: flex-end;
+}
+
+.acenter{
+    align-items: center;
+}
+
+.aspace-between {
+    align-items: space-between;
+}
+
+@media (max-width:990px) {
+    .block {
+        display: grid;
+        grid-template-columns:  49% 49%;
+    }
+    .rowGrid5 {
+        grid-template-columns: 80%;
+        justify-content: center;
+    }
+}
+
+@media (max-width:768px) {
+    .block {
+        display: grid;
+        grid-template-columns:  90%;
+        justify-content: center;
+    }
+    .dGrid>div {
+        margin-top: 5px;
+    }
+    .rowGrid2 {
+        grid-template-columns: 90%;
+        justify-content: center;
+    }
+    .rowGrid3 {
+        grid-template-columns: 100%;
+    }
+    .rowGrid5 {
+        grid-template-columns: 90%;
+    }
+}
+
+@media (max-width:565px) {
+    .block {
+        grid-template-columns:  100%;
+        grid-gap: 0%;
+    }
+    .rowGrid2 {
+        grid-template-columns: 100%;
+    }
+    .rowGrid5 {
+        grid-template-columns: 98%;
+    }
+}

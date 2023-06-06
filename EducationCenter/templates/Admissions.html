@@ -1,0 +1,41 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Admission{% endblock %}
+
+{% block content %}
+    <!-- latest_coures_area_start  -->
+    <div class="admission_area">
+        <div class="admission_inner">
+            <div class="container">
+                <div class="jflex-end rowGrid5">
+                    <div class="">
+                        <div class="admission_form">
+                            <h3>Apply for Admission</h3>
+                            <form action="{% url 'main-admission' %}" method="post">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="single_input mb-4">
+                                            <input id="phone" type="tel" name="phone" placeholder="Phone Number" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="single_input">
+                                            <textarea cols="30" placeholder="Write an Application" rows="10" name="message" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="apply_btn d-flex justify-content-center">
+                                            <button class="boxed-btn3" type="submit" >Apply Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ latest_courses_area_end -->
+{%endblock%}

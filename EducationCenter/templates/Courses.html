@@ -1,0 +1,72 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Courses{% endblock %}
+{% block content %}
+    <!-- bradcam_area_start  -->
+    <div class="bradcam_area breadcam_bg">
+        <div class="container">
+            <div class="rowGrid jflex-start">
+                <div class="">
+                    <div class="bradcam_text">
+                        <h3>Our Courses</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- bradcam_area_end  -->
+
+    <!-- popular_program_area_start  -->
+    <div class="popular_program_area section__padding">
+        <div class="container">
+            <div class="rowGrid">
+                <div class="rowGrid">
+                    <div class="section_title text-center">
+                        <h3>Our Courses</h3>
+                    </div>
+                </div>
+            </div>
+            <ul class="d-flex justify-content-center nav nav-pills mb-5" id="pills-tab" role="tablist">
+                {% for category in courses_category  %}
+                <li class="nav-item mx-4" role="presentation">
+                    <button class="nav-link {% if category.id == 1 %} active {% endif %}" id="pills-{{category.id}}-tab" data-bs-toggle="pill" data-bs-target="#pills-{{category.id}}" type="button" role="tab" aria-controls="pills-{{category.id}}" aria-selected="{% if category.id == 1 %} true {% else %} false {% endif %} ">{{category.name}}</button>
+                </li>
+                {% endfor %}
+
+            </ul>
+<div class="tab-content" id="pills-tabContent">
+    {% for les in listCategory %}
+  <div class="tab-pane fade show {% if les == active %} active {% endif %} " id="pills-{{les}}" role="tabpanel" aria-labelledby="pills-{{les}}-tab">
+      <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              <div class="block">
+                    {% for course in courses%}
+                        {% if course.category_id == les  %}
+                            <div class="blocks">
+                                <div class="single__program">
+                                    <div class="program_thumb">
+                                        <img src="{{ course.image.url }}" alt="">
+                                    </div>
+                                    <div class="program__content">
+                                        <h4>{{course.title}}</h4>
+                                        {% autoescape off %}<p>{{course.description}} {% endautoescape %}</p>
+                                        <div class="d-flex justify-content-center">
+                                             <a href="{% url 'main-admission' %}" class="boxed-btn5">Apply NOw</a>
+                                        </div>
+                                    </div>
+                                </div>
+                           </div>
+                        {% endif %}
+                    {% endfor %}
+              </div>
+          </div>
+      </div>
+
+  </div>
+  {% endfor %}
+</div>
+            </div>
+        </div>
+    </div>
+    <!-- popular_program_area_end -->
+{% endblock %}

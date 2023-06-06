@@ -1,0 +1,57 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Event{% endblock %}
+{% block content %}
+    <!-- bradcam_area_start  -->
+    <div class="bradcam_area breadcam_bg">
+        <div class="container">
+            <div class="rowGrid jflex-start">
+                <div class="">
+                    <div class="bradcam_text">
+                        <h3>Recent Events</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- bradcam_area_end  -->
+
+    <!-- recent_event_area_start  -->
+    <div class="recent_event_area section__padding">
+        <div class="container">
+            <div class="rowGrid">
+                <div class="rowGrid">
+                    <div class="section_title text-center mb-70">
+                        <h3 class="mb-45">Recent Event</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            incididunt ut
+                            labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="rowGrid margin__event">
+                    {% for event in events %}
+                        <div class="single_event d-flex align-items-center">
+                            <div class="date text-center" style="background: #ebb830;">
+                                <span>02</span>
+                                <p>{{ event.date }}</p>
+                            </div>
+                            <div class="event_info">
+                                <a href="{% url 'event_details' event.id %}">
+                                    <h4>{{ event.title }}</h4>
+                                </a>
+                                <p>
+                                    <span> <i class="flaticon-clock"></i> 10:30 pm</span>
+                                    <span> <i class="flaticon-calendar"></i> 21Nov 2020 </span>
+                                    <span> <i class="flaticon-placeholder"></i> AH Oditoriam</span>
+                                </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- recent_event_area_end  -->
+{% endblock %}

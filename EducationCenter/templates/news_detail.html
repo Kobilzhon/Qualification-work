@@ -1,0 +1,101 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}News detail{% endblock %}
+{% block content %}  <!-- bradcam_area_start  -->
+  <div class="bradcam_area breadcam_bg">
+      <div class="container">
+          <div class="row">
+              <div class="col-xl-12">
+                  <div class="bradcam_text">
+                      <h3>NEWS</h3>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- bradcam_area_end  -->
+
+   <!--================Blog Area =================-->
+   <section class="blog_area single-post-area section-padding">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-12 posts-list">
+               <div class="single-post">
+                  <div class="feature-img align-center">
+                     <img class="card-img rounded-0" src="{{ news.image.url }}" alt="">
+                  </div>
+                  <div class="blog_details">
+                     <h2> {{ news.title }} </h2>
+                      {% autoescape off %}
+                     <p class="excert"> {{ news.description }} </p>
+                      {% endautoescape %}
+                  </div>
+               </div>
+               <div class="comments-area">
+                  {% if news.news_comment_count < 10 %}
+                     <h4>0{{ news.news_comment_count }} Comments</h4>
+                  {% else %}
+                     <h4>{{ news.news_comment_count }} Comments</h4>
+                  {% endif %}
+                  {% for comment in news.newscomment_set.all %}
+                  <div class="comment-list">
+                     <div class="single-comment justify-content-between d-flex">
+                        <div class="user justify-content-between d-flex">
+                           <div class="thumb">
+                              <img src="{{ user.profilemodel.image.url }}" alt="">
+                           </div>
+                           <div class="desc">
+                              <p class="comment">{{ comment.content }}</p>
+                              <div class="d-flex justify-content-between">
+                                 <div class="d-flex align-items-center">
+                                    <h5>
+                                       <span href="#">{{ comment.user }} {{ comment.user.last_name }}</span>
+                                    </h5>
+                                    <p class="date">{{ comment.date }}  {{ comment.time }}</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  {%endfor%}
+               </div>
+               <div class="comment-form">
+                  <h4>My Comment</h4>
+                  <form method="post" name="form" class="form-contact comment_form" action="#" id="commentForm">
+                      {% csrf_token %}
+                     <div class="row">
+                        <div class="col-12">
+                           <div class="form-group">
+                              <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
+                                 placeholder="Write Comment" required></textarea>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <button name="send_news_comment" type="submit" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <!--================ Blog Area end =================-->
+
+   <script>
+      $('#datepicker').datepicker({
+          iconsLibrary: 'fontawesome',
+          icons: {
+           rightIcon: '<span class="fa fa-caret-down"></span>'
+       }
+      });
+      $('#datepicker2').datepicker({
+          iconsLibrary: 'fontawesome',
+          icons: {
+           rightIcon: '<span class="fa fa-caret-down"></span>'
+       }
+
+      });
+  </script>
+{% endblock %}
